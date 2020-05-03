@@ -1,4 +1,3 @@
-
 class TicTacToe
 
   WIN_COMBINATIONS = [
@@ -12,8 +11,8 @@ class TicTacToe
     [6, 4, 2]
   ]
 
-def initialize(board = nil)
-  @board = board || Array.new(9, " ")
+def initialize
+  @board = Array.new(9, " ")
 end
 
 def display_board
@@ -51,7 +50,7 @@ def turn_count
 end
 
 def current_player
-
+  #if the turn count is an even number, that means O just went, so the next/current player is X
   num_turns = turn_count
   if num_turns % 2 == 0
     player = "X"
@@ -127,13 +126,14 @@ def winner
   end
 end
 
-def play(board)
-  while !over?(board)
-    turn(board)
+def play
+  until over? == true
+    turn
   end
-  if won?(board)
-    puts "Congratulations #{winner(board)}!"
-  elsif draw?(board)
+
+  if won?
+    puts "Congratulations #{winner}!"
+  elsif draw?
     puts "Cat's Game!"
   end
 end
